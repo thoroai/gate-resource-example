@@ -5,17 +5,17 @@ resource_types:
     repository: meshcloud/gate-resource
 
 gate-source: &gate-source
-  git: 
-    uri: git@github.com:Meshcloud/gate-resource-example.git
-    private_key: ((github-key-readwrite))
+  git:
+    uri: git@github.com:thoroai/gate-resource-example.git
+    private_key: ((github-private-key))
     branch: gates
 
 resources:
   - name: repo
     type: git
     source:
-      uri: git@github.com:Meshcloud/gate-resource-example.git
-      private_key: ((github-key-readwrite))
+      uri: git@github.com:thoroai/gate-resource-example.git
+      private_key: ((github-private-key))
       branch: master
 
   - name: a-gate
@@ -45,7 +45,7 @@ jobs:
     - put: a-gate
       params:
         item_file: gen/*
-  
+
   - name: push-b
     plan:
     - get: repo
@@ -54,7 +54,7 @@ jobs:
     - put: b-gate
       params:
         item_file: gen/*
-    
+
   - name: push-autogate
     plan:
     - get: repo
